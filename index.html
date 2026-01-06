@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KryPVP | Official Server</title>
+    
+    <link rel="icon" type="image/png" href="img/logo.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700;900&display=swap');
+
+        :root {
+            --orange-main: #ff6a00;
+            --bg-dark: #0a0a0a;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-image: radial-gradient(circle at 50% 40%, #221200 0%, #0a0a0a 70%);
+            background-attachment: fixed;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-logo {
+            animation: float 4s ease-in-out infinite;
+            max-width: 350px;
+            width: 80%;
+            will-change: transform;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));
+        }
+
+        .store-card {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            height: 160px;
+            border-radius: 24px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .store-card:hover {
+            transform: translateY(-8px);
+            filter: brightness(1.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .card-java { background: linear-gradient(135deg, #ffb703 0%, #e6a600 100%); color: #451a03; }
+        .card-bedrock { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: #ffffff; }
+
+        .store-card h2 {
+            font-weight: 900;
+            font-size: 2.2rem;
+            line-height: 1;
+            margin: 0;
+        }
+
+        .store-card p {
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        #toast {
+            visibility: hidden;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #f59e0b;
+            color: #451a03;
+            font-weight: 800;
+            padding: 12px 24px;
+            border-radius: 12px;
+            z-index: 100;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <nav class="p-6 w-full">
+        <div class="max-w-7xl mx-auto flex justify-center md:justify-end">
+            <button onclick="copyIP()" class="bg-[#f59e0b] text-[#451a03] px-5 py-2.5 rounded-xl font-black flex items-center gap-3 hover:scale-105 transition active:scale-95 shadow-lg">
+                <span id="ip-text">KRYPVP.US</span>
+                <span class="bg-black/10 px-2 py-0.5 rounded text-sm">400</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex flex-col items-center justify-center px-4 gap-12">
+        
+        <div class="flex justify-center">
+            <img src="img/logo.png" alt="KryPVP" class="floating-logo">
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-6 w-full max-w-5xl justify-center items-center">
+            
+            <a href="https://tienda.krypvp.us" class="store-card card-java">
+                <div class="relative z-10">
+                    <h2>Tienda Java</h2>
+                    <p>Compra aquí si tienes Java</p>
+                </div>
+            </a>
+
+            <a href="https://discord.krypvp.us" class="store-card card-bedrock">
+                <div class="relative z-10">
+                    <h2>Discord</h2>
+                    <p>Únete a nuestra comunidad</p>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+    <footer class="p-8 text-center text-gray-600 text-[10px] tracking-widest uppercase">
+        &copy; 2026 KryPVP Server | krypvp.us
+    </footer>
+
+    <div id="toast">¡IP COPIADA! NOS VEMOS EN EL SERVIDOR ⚔️</div>
+
+    <script>
+        lucide.createIcons();
+
+        function copyIP() {
+            const ip = "krypvp.us";
+            const toast = document.getElementById("toast");
+            
+            navigator.clipboard.writeText(ip).then(() => {
+                toast.classList.add("show");
+                setTimeout(() => {
+                    toast.classList.remove("show");
+                }, 2500);
+            });
+        }
+    </script>
+</body>
+</html>
